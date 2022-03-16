@@ -1,0 +1,30 @@
+﻿@model IEnumerable<PlatformService.Models.AddedDateGroup>
+
+@{
+    ViewBag.Title = "User Body Statistics";
+}
+
+<h2>User Body Statistics</h2>
+
+<table>
+    <tr>
+        <th>
+            Added Time
+        </th>
+        <th>
+            Users
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedTime)
+            </td>
+            <td>
+                @item.UserCount
+            </td>
+        </tr>
+    }
+</table>
