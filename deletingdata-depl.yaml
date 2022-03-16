@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deletingdata-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deletingdataservice
+  template:
+    metadata:
+      labels:
+        app: deletingdataservice
+    spec:
+      containers:
+        - name: deletingdataservice
+          image: maviek14/deletingdataservice:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: deletingdata-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: deletingdataservice
+  ports:
+  - name: deletingdataservice
+    protocol: TCP
+    port: 80
+    targetPort: 80
